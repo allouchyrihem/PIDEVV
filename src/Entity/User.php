@@ -39,6 +39,9 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $status = null;
+
     public function __construct()
     {
         $this->role = new ArrayCollection();
@@ -229,6 +232,18 @@ class User
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
