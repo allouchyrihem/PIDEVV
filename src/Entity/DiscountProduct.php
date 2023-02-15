@@ -14,14 +14,17 @@ class DiscountProduct
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $value = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $startdate = null;
 
-    #[ORM\Column]
-    private ?float $enddate = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $enddate = null;
+
+    #[ORM\OneToOne(inversedBy: 'discountProduct', cascade: ['persist', 'remove'])]
+    private ?Product $discountprod = null;
 
     public function getId(): ?int
     {
@@ -33,7 +36,7 @@ class DiscountProduct
         return $this->value;
     }
 
-    public function setValue(float $value): self
+    public function setValue(?float $value): self
     {
         $this->value = $value;
 
@@ -45,21 +48,33 @@ class DiscountProduct
         return $this->startdate;
     }
 
-    public function setStartdate(\DateTimeInterface $startdate): self
+    public function setStartdate(?\DateTimeInterface $startdate): self
     {
         $this->startdate = $startdate;
 
         return $this;
     }
 
-    public function getEnddate(): ?float
+    public function getEnddate(): ?\DateTimeInterface
     {
         return $this->enddate;
     }
 
-    public function setEnddate(float $enddate): self
+    public function setEnddate(?\DateTimeInterface $enddate): self
     {
         $this->enddate = $enddate;
+
+        return $this;
+    }
+
+    public function getDiscountprod(): ?Product
+    {
+        return $this->discountprod;
+    }
+
+    public function setDiscountprod(?Product $discountprod): self
+    {
+        $this->discountprod = $discountprod;
 
         return $this;
     }

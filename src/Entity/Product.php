@@ -39,13 +39,18 @@ class Product
     #[ORM\OneToMany(mappedBy: 'Product', targetEntity: Comment::class)]
     private Collection $comments;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?Discount $discount = null;
+    #[ORM\OneToOne(mappedBy: 'discountprod', cascade: ['persist', 'remove'])]
+    private ?DiscountProduct $discountProduct = null;
+
+    #[ORM\ManyToMany(targetEntity: DiscountTotale::class, mappedBy: 'DiscountTProduct')]
+    private Collection $discountTotales;
+
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->discountTotales = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -182,15 +187,54 @@ class Product
         return $this;
     }
 
-    public function getDiscount(): ?Discount
+    public function getDiscountProduct(): ?DiscountProduct
     {
-        return $this->discount;
+        return $this->discountProduct;
     }
 
-    public function setDiscount(?Discount $discount): self
+    public function setDiscountProduct(?DiscountProduct $discountProduct): self
     {
-        $this->discount = $discount;
+        // unset the owning side of the relation if necessary
+        if ($discountProduct === null && $this->discountProduct !== null) {
+            $this->discountProduct->setDiscountprod(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($discountProduct !== null && $discountProduct->getDiscountprod() !== $this) {
+            $discountProduct->setDiscountprod($this);
+        }
+
+        $this->discountProduct = $discountProduct;
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, DiscountTotale>
+     */
+    public function getDiscountTotales(): Collection
+    {
+        return $this->discountTotales;
+    }
+
+    public function addDiscountTotale(DiscountTotale $discountTotale): self
+    {
+        if (!$this->discountTotales->contains($discountTotale)) {
+            $this->discountTotales->add($discountTotale);
+            $discountTotale->addDiscountTProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiscountTotale(DiscountTotale $discountTotale): self
+    {
+        if ($this->discountTotales->removeElement($discountTotale)) {
+            $discountTotale->removeDiscountTProduct($this);
+        }
+
+        return $this;
+    }
+
+    
 }
