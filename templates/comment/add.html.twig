@@ -1,48 +1,27 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
+
+
 	<div class="grix xs2 sm3 gutter-0 card">
 		<div class="col-xs2 col-sm3">
-			<h2>Réclamation</h2>
+			<h2>Liste des commentaires</h2>
+
 			{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}
 			) }}
 			<table>
 				<tr>
-					<td>{{ form_label(form.sujet,"L'objet") }}</td>
-					<td>{{form_widget(form.sujet)}}</td>
-					<td>{{form_errors(form.sujet)}}</td>
+					<td>{{ form_label(form.description,"Ajouter un commentaire ") }}</td>
 
 				</tr>
-			</table>
-			<table>
 				<tr>
-					<td>{{ form_label(form.description,"Déscription :") }}</td>
+
 					<td>{{form_widget(form.description)}}</td>
 					<td>{{form_errors(form.description)}}</td>
 
 				</tr>
 			</table>
-			{{ form_end(form) }}
 
+			{{ form_end(form) }}
 		</div>
 
-
-		<div class="grix xs2 sm3 gutter-0 card">
-			<div class="col-xs2 col-sm3">
-				<h2>Liste des commentaires</h2>
-
-				{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}
-				) }}
-				<table>
-					<tr>
-						<td>{{ form_label(form.description,"Ajouter un commentaire") }}</td>
-						<td>{{form_widget(form.description)}}</td>
-						<td>{{form_errors(form.description)}}</td>
-
-					</tr>
-				</table>
-
-				{{ form_end(form) }}
-			</div>
-
-		{% endblock %}
+	{% endblock %}
