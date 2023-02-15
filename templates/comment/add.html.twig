@@ -1,34 +1,48 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		<link
-		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
+{% extends 'base.html.twig' %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</head>
-	<body>
-		{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}
-		) }}
-		<table>
-			<tr>
-				<td>{{ form_label(form.description,"Ajouter un commentaire") }}</td>
-				<td>{{form_widget(form.description)}}</td>
-				<td>{{form_errors(form.description)}}</td>
+{% block body %}
+	<div class="grix xs2 sm3 gutter-0 card">
+		<div class="col-xs2 col-sm3">
+			<h2>Réclamation</h2>
+			{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}
+			) }}
+			<table>
+				<tr>
+					<td>{{ form_label(form.sujet,"L'objet") }}</td>
+					<td>{{form_widget(form.sujet)}}</td>
+					<td>{{form_errors(form.sujet)}}</td>
 
-			</tr>
-		</table>
-		{{ form_end(form) }}
-		{% block body %}{% endblock %}
-	</body>
-</html></body></html>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td>{{ form_label(form.description,"Déscription :") }}</td>
+					<td>{{form_widget(form.description)}}</td>
+					<td>{{form_errors(form.description)}}</td>
+
+				</tr>
+			</table>
+			{{ form_end(form) }}
+
+		</div>
+
+
+		<div class="grix xs2 sm3 gutter-0 card">
+			<div class="col-xs2 col-sm3">
+				<h2>Liste des commentaires</h2>
+
+				{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}
+				) }}
+				<table>
+					<tr>
+						<td>{{ form_label(form.description,"Ajouter un commentaire") }}</td>
+						<td>{{form_widget(form.description)}}</td>
+						<td>{{form_errors(form.description)}}</td>
+
+					</tr>
+				</table>
+
+				{{ form_end(form) }}
+			</div>
+
+		{% endblock %}

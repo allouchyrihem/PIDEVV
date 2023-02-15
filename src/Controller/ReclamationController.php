@@ -34,7 +34,7 @@ class ReclamationController extends AbstractController
         $form = $this->createForm(ReclamationType::class,$reclamation);
         $form->handleRequest($req);
         if($form->isSubmitted()&& $form->isValid()){
-            $reclamation->setDate(new DateTime());
+            $reclamation->setDate(new DateTime()); ///on prend le date systéme 
 
             $em->persist($reclamation);
             $em->flush();
