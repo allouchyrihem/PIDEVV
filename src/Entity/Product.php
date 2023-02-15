@@ -6,6 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -16,21 +17,28 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"nom est obligatoire")]
     private ?string $name = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank(message:"prix est obligatoire")]
     private ?float $price = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Positive(message:"quantité doit etre positive")]
+    #[Assert\NotBlank(message:"quantité est obligatoire")]
     private ?int $quantity = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"description du produit est obligatoire")]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
+    #[Assert\NotBlank(message:"vendeur est obligatoire")]
     private ?User $owner = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
+    #[Assert\NotBlank(message:"choisir une catégorie")]
     private ?Category $category = null;
 
     #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'products')]
@@ -41,6 +49,8 @@ class Product
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Discount $discount = null;
+    #[ORM\Column(length: 255)]
+    private ?string $imagep = null;
 
     public function __construct()
     {
@@ -190,6 +200,18 @@ class Product
     public function setDiscount(?Discount $discount): self
     {
         $this->discount = $discount;
+
+        return $this;
+    }
+
+    public function getImagep(): ?string
+    {
+        return $this->imagep;
+    }
+
+    public function setImagep(string $imagep): self
+    {
+        $this->imagep = $imagep;
 
         return $this;
     }

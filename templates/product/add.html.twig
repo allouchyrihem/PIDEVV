@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sana3ty{% endblock %}
+{% block body %}
+<!-- Breadcrumb Start -->
+	<div class="container-fluid">
+		<div class="row px-xl-5">
+			<div class="col-12">
+				<nav class="breadcrumb bg-light mb-30">
+					<a class="breadcrumb-item text-dark" href="#">Vendeur</a>
+					<a class="breadcrumb-item text-dark" href="#">Add</a>
+    				</nav>
+			</div>
+		</div>
+	</div>
+      <div class="container-fluid mb-3">
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+                <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#header-carousel" data-slide-to="1"></li>
+                        <li data-target="#header-carousel" data-slide-to="2"></li>
+
+                    </ol>
+
+                   </div>
+                                {{form_start(FormProduit,{'attr':{'class':'form-horizontal'}})}}      
+                                <table>
+                                <tr>
+                                <td>{{form_label(FormProduit.name,"nom")}} </td>
+                                <td>{{form_widget(FormProduit.name)}} </td>
+                                <td>{{form_errors(FormProduit.name)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.price,"prix")}} </td>
+                                <td>{{form_widget(FormProduit.price)}} </td>
+                                <td>{{form_errors(FormProduit.price)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.quantity,"quantité")}} </td>
+                                <td>{{form_widget(FormProduit.quantity)}} </td>
+                                <td>{{form_errors(FormProduit.quantity)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.description,"description")}} </td>
+                                <td>{{form_widget(FormProduit.description)}} </td>
+                                <td>{{form_errors(FormProduit.description)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.imagep,"image")}} </td>
+                                <td>{{form_widget(FormProduit.imagep)}} </td>
+                                <td>{{form_errors(FormProduit.imagep)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.owner,"vendeur")}} </td>
+                                <td>{{form_widget(FormProduit.owner)}} </td>
+                                <td>{{form_errors(FormProduit.owner)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.category,"catégorie")}} </td>
+                                <td>{{form_widget(FormProduit.category)}} </td>
+                                <td>{{form_errors(FormProduit.category)}} </td>
+                                </tr>
+                                <tr>
+                                <td>{{form_label(FormProduit.discount,"promos")}} </td>
+                                <td>{{form_widget(FormProduit.discount)}} </td>
+                                <td>{{form_errors(FormProduit.discount)}} </td>
+                                </tr>
+                                </table>
+                                {{form_widget(FormProduit.add)}}
+                                {{form_end(FormProduit)}}
+
+    </div>
+{% endblock %}

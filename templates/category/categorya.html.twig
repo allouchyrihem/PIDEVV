@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Catgory!{% endblock %}
+
+{% block body %}
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <a class="breadcrumb-item text-dark" href="#">Category</a>
+                    <span class="breadcrumb-item active">Category List</span>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+<!-- Categories Start -->
+
+    <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+    <div class="col-lg-3 col-md-4">
+                <!-- Price Start -->
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">catégories</span></h2>
+                <div class="bg-light p-4 mb-30">
+                    <form>
+                        <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
+                            <a href={{path('app_product_all_admin')}} for="price-all">Produits</a>
+                        </div>
+                        <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
+                            <a href={{path('app_category_A')}}  for="price-1">Catégories</a>
+                        </div>
+                        <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
+                            <a  for="price-2">Réclamation</a>
+                        </div>
+                        <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
+                            <a  for="price-3">Factures</a>
+                        </div>
+                        <div class="custom-control  d-flex align-items-center justify-content-between mb-3">
+                            <a  for="price-4">Utilisateurs</a>
+                        </div>
+                        
+                    </form>
+                </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                <div class="row pb-3">
+                    <div class="col-12 pb-1">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div>
+                                <a class="btn btn-sm btn-light ml-2"  href="{{path('app_category_add')}}" class="dropdown-item">ajouter</a>
+                            </div>
+                            </div>
+                            </div>
+        {% for c in category %}
+       <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <a class="text-decoration-none" href="">
+                    <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                        <div class="overflow-hidden" style="width: 100; height: 100;">
+                            <img class="img-fluid" src="img/category.png" width="50" height="50" alt="">
+                        </div>
+                                     
+                        <div class="flex-fill pl-3">
+                            <h6>{{c.name}}</h6>
+                            
+                        </div>
+                        <a href="{{path('app_category_delete',{'id':c.id})}}" class="nav-item nav-link"><img  src="{{ asset("img/delete.png") }}" width="10" height="10" ></a>
+
+                                     <a href="{{path('app_category_update',{'id':c.id})}}" class="nav-item nav-link"><img  src="{{ asset("img/edit.png") }}" width="10" height="10" ></a>
+                           
+                    </div>
+                   
+                </a>
+              
+            </div>
+                    {% endfor %}
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Categories End -->
+    {% endblock %}
