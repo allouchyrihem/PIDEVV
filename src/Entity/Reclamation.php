@@ -25,9 +25,9 @@ class Reclamation
     #[Assert\NotBlank(message:"Veuillez ajouter une déscription")]
     #[Assert\Length(
         min: 2,
-        max: 50,
-        minMessage: "Vous ne pouvez pas écrire moins que {{limit}} caractére",
-        maxMessage: "Vous ne pouvez pas écrire plus que {{limit}} caractére",
+        max: 120,
+        minMessage: 'Vous ne pouvez pas écrire moins que {{ limit }} caractére',
+        maxMessage: "Vous ne pouvez pas écrire plus que {{ limit }} caractére",
     )]
 
     private ?string $description = null;
