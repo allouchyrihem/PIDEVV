@@ -15,13 +15,13 @@ class Comment
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Veuillez écrire un commentaire")]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $relation = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?User $user = null;
