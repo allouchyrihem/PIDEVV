@@ -18,9 +18,9 @@
 		{% endblock %}
 	</head>
 	<body>
-		{{ form(form,{'attr': {'novalidate': 'novalidate'}}
-			) }}
-			{% block body %}{% endblock %}
-		</body>
+		{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}
+		) }}
+		{{ form_end(form) }}
+		{% block body %}{% endblock %}
 	</body>
-</html>
+</html></body></html>
