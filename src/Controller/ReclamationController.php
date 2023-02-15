@@ -43,5 +43,16 @@ class ReclamationController extends AbstractController
         return $this->renderForm('reclamation/add.html.twig', ['form'=>$form]);
 
     }
+    #[Route('/reclamation/list', name: 'list_reclamation')]
 
+    public function showAction() {
+
+        $reclamation = $this->getDoctrine()->getRepository(Reclamation::class);
+        $reclamation = $reclamation->findAll();
+
+        return $this->render(
+            'reclamation/list.html.twig',
+            array('reclamation' => $reclamation)
+        );
+    }
 }

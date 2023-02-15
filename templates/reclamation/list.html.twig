@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+	<div class="grix xs2 sm3 gutter-0 card">
+		<div class="col-xs2 col-sm3"></div>
+		<div class="col-xs2 col-sm3">
+
+			<tr>
+				<h2>Liste des reclamations</h2>
+			</tr>
+
+			{% for reclamation in reclamation %}
+				<tr>
+					<h3>L'objet de reclamation:
+						{{reclamation.sujet}}</h3>
+				</tr>
+				<tr>
+					<h3>Déscription de reclamation:
+						{{reclamation.description}}</h3>
+				</tr>
+				<tr>
+					<p>Envoyé le
+						{{reclamation.date|date("d/m/Y H:i") }}</p>
+				</tr>
+
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
