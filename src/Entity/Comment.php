@@ -58,18 +58,7 @@ class Comment
         return $this;
     }
 
-    public function getRelation(): ?string
-    {
-        return $this->relation;
-    }
-
-    public function setRelation(string $relation): self
-    {
-        $this->relation = $relation;
-
-        return $this;
-    }
-
+   
     public function getUser(): ?User
     {
         return $this->user;

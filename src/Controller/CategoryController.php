@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Category;
 use App\Form\CategoryType;
 
+
 class CategoryController extends AbstractController
 {
     #[Route('/category', name: 'app_category')]
