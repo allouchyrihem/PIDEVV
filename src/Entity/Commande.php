@@ -34,6 +34,9 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?User $client = null;
 
+    #[ORM\ManyToOne(inversedBy: 'discountTCommande')]
+    private ?DiscountTotale $discountTotale = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -124,6 +127,18 @@ class Commande
     public function setClient(?User $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getDiscountTotale(): ?DiscountTotale
+    {
+        return $this->discountTotale;
+    }
+
+    public function setDiscountTotale(?DiscountTotale $discountTotale): self
+    {
+        $this->discountTotale = $discountTotale;
 
         return $this;
     }
