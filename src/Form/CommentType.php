@@ -18,7 +18,6 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('description', TextareaType::class)
-            ->add('date' ,  DateTimeType::class)
             ->add('Commenter', SubmitType::class)
 
 

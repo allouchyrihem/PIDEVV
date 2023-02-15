@@ -10,6 +10,7 @@ use App\Entity\Comment;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CommentRepository;
+use DateTime;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -31,6 +32,7 @@ class CommentController extends AbstractController
         $form = $this->createForm(CommentType::class,$comment);
         $form->handleRequest($req);
         if($form->isSubmitted()&& $form->isValid()){
+            $comment->setDate(new DateTime());
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('add_comment');
