@@ -40,5 +40,16 @@ class CommentController extends AbstractController
         return $this->renderForm('comment/add.html.twig', ['form'=>$form]);
 
     }
+    #[Route('/comment/list', name: 'list_comment')]
 
+    public function showAction() {
+
+        $comment = $this->getDoctrine()->getRepository(Comment::class);
+        $comment = $comment->findAll();
+
+        return $this->render(
+            'comment/list.html.twig',
+            array('comment' => $comment)
+        );
+    }
 }

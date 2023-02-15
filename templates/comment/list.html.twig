@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+	<div class="grix xs2 sm3 gutter-0 card">
+		<div class="col-xs2 col-sm3"></div>
+		<div class="col-xs2 col-sm3">
+			<h2>Liste des commentaires</h2>
+			{% for comment in comment %}
+				<h3>Commentaire
+					{{comment.description}}</h3>
+				<p>Publié le
+					{{comment.date|date("d/m/Y H:i") }}</p>
+
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
