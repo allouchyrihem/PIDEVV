@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -15,9 +17,19 @@ class Reclamation
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Veuillez spécifier le sujet")]
+
     private ?string $sujet = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Veuillez ajouter une déscription")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Vous ne pouvez pas écrire moins que {{limit}} caractére",
+        maxMessage: "Vous ne pouvez pas écrire plus que {{limit}} caractére",
+    )]
+
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
