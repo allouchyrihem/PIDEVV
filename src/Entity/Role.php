@@ -21,6 +21,12 @@ class Role
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'role')]
     private Collection $users;
 
+    #[ORM\ManyToOne(inversedBy: 'role')]
+    private ?User $user = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -66,6 +72,30 @@ class Role
         if ($this->users->removeElement($user)) {
             $user->removeRole($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

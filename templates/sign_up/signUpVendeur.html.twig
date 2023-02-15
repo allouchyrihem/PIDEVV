@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Create your small business</span></h2>
+        <div class="row px-xl-5">
+            <div class="col-lg-7 mb-5" >
+                <div class="contact-form bg-light p-30">
+                    <div id="success"></div>
+                    {#
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+                         <div class="control-group">
+                          <td class="form-control">{{ form_label(form.name,"Nom de votre small business :") }}</td>
+					      <td class="form-control">{{form_widget(form.name)}}</td>
+                        </div>
+                        <div class="control-group">
+                           <td class="form-control">{{ form_label(form.description,"Déscription :") }}</td>
+					       <td class="form-control">{{form_widget(form.description)}}</td>
+					      
+                        </div>
+                        <div class="control-group">
+                            <td class="form-control">{{ form_label(form.email,"Email :") }}</td>
+					        <td class="form-control">{{form_widget(form.email)}}</td>
+					      
+                        </div>
+                        <div class="control-group">
+                             <td class="form-control">{{ form_label(form.adress,"Adresse :") }}</td>
+					         <td class="form-control">{{form_widget(form.adress)}}</td>
+					    
+                        </div>
+                          <div class="control-group">
+                             <td class="form-control">{{ form_label(form.password,"Mot de passe :") }}</td>
+					         <td class="form-control">{{form_widget(form.password)}}</td>
+					       
+                        </div>
+                        <div>
+                        {{ form_end(form) }}
+                        #}
+                        {{ form(form) }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+{% endblock %}
