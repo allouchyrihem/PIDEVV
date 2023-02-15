@@ -10,6 +10,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ReclamationRepository;
 use App\Entity\Reclamation;
+use DateTime;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 
@@ -32,6 +34,8 @@ class ReclamationController extends AbstractController
         $form = $this->createForm(ReclamationType::class,$reclamation);
         $form->handleRequest($req);
         if($form->isSubmitted()&& $form->isValid()){
+            $reclamation->setDate(new DateTime());
+
             $em->persist($reclamation);
             $em->flush();
             return $this->redirectToRoute('reclam_comment');

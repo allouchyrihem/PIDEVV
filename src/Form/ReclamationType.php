@@ -20,7 +20,6 @@ class ReclamationType extends AbstractType
         $builder
             ->add('sujet', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('date',DateTimeType::class)
             ->add('Envoyer', SubmitType::class)
 
             
