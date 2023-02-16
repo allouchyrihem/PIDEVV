@@ -10,6 +10,8 @@ use App\Entity\Comment;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CommentRepository;
+use Doctrine\ORM\Mapping as ORM;
+
 use DateTime;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -51,5 +53,15 @@ class CommentController extends AbstractController
             'comment/list.html.twig',
             array('comment' => $comment)
         );
+    }
+    #[Route('/supprimerComment/{id}',name:'Comment_delete')]
+    public function supprimerproduit(ManagerRegistry $doctrine,CommentRepository $commentRepository,$id){
+        $em = $doctrine->getManager();
+        $comment = $commentRepository->find($id);
+        $em->remove($comment);
+        $em->flush();
+        return $this->redirectToRoute('list_comment');
+    
+    
     }
 }

@@ -26,7 +26,14 @@
 							{{comment.description}}</td>
 						<td>
 							{{comment.date|date("d/m/Y H:i") }}</td>
+						<td>
+							<a href="{{path('Comment_delete',{'id': comment.id}) }}" class="bg-red-500 font-bold py-2 px-4 ml-6 rounded transition-all hover:bg-red-300">
+								Supprimer
+							</a>
+						</td>
+
 					</tr>
+
 				{% endfor %}
 
 			</table>
