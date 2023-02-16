@@ -1,0 +1,44 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailController!{% endblock %}
+
+{% block body %}
+ <table class="table table-border=1" >
+    <thead>
+    <tr>
+    <th>ID</th>
+    <th>Produit</th>
+     <th>Description</th>
+     <th>client</th>
+     <th>Etat</th>
+     <th>Prix </th>
+    
+    
+
+    </tr>
+    </thead>
+    <tbody>
+    {%for s in commande.products%}
+    <tr>
+    <td>{{commande.id}}</td>
+    
+    <td>{{s.name}}</td>
+    <td>{{commande.description}}</td>
+
+    <td>{{commande.client.name}}</td>
+    <td>{{commande.etat}}</td>
+    <td>{{s.price}}DT</td>
+    
+
+    </tr>{%endfor%}
+    </tbody>
+    </table>
+       {% set somme = 0 %}
+       {%for s in commande.products%}
+           {% set somme = somme+ s.price %}{% endfor %}
+                         
+
+    <ul><li>Prix totale:Dt{{somme}}</li></ul>
+    <button>telechargé</button>
+    
+{% endblock %}

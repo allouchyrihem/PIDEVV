@@ -27,12 +27,16 @@ class Commande
 
     #[ORM\Column(nullable: true)]
     private ?float $sum = null;
+    
 
     #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'commandes')]
     private Collection $products;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?User $client = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $etat = null;
 
     public function __construct()
     {
@@ -124,6 +128,18 @@ class Commande
     public function setClient(?User $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }

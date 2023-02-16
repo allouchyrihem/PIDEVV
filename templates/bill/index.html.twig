@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FFacture{% endblock %}
+
+{% block body %}
+ <div class="container">
+ <div class="row">
+
+</div>
+<div class="row">
+<div class="row">
+<div class="col-md-4">
+      
+ 
+</div>
+</div>
+<div class="row">
+    <table class="table" border="1" >
+    <thead>
+    <tr>
+    <th>ID</th>
+     
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in bills %}
+    <tr>
+    <td>{{c.id}}</td>
+    <td>{{c.commande}}</td>
+    
+            
+    </tr>
+    
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
+

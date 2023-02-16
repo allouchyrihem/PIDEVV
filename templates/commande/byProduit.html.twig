@@ -1,0 +1,14 @@
+<ul>
+ 
+    <li>{{byproduits.id}}</li>
+    <li>etat</li>
+    <li>description:{{byproduits.description}}</li>
+    <p>Produit</p>
+    {% for k in byproduits.products %}
+
+    <li>{{k.name}}</li>
+ {% endfor %}
+ <a href="{{path('commande_update',{'id':byproduits.id})}}">modifier</a>
+    </ul>
+   
+   

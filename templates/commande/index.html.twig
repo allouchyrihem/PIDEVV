@@ -1,0 +1,58 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailController!{% endblock %}
+
+{% block body %}
+ <div class="container">
+ <div class="row">
+<div class="col-md-4">
+        <a class="btn btn-primary" >Ajouter un nouveau commande</a>
+
+</div>
+</div>
+<div class="row">
+<div class="row">
+<div class="col-md-4">
+      
+ 
+</div>
+</div>
+<div class="row">
+    <table class="table table-border=1" >
+    <thead>
+    <tr>
+    <th>ID</th>
+    <th>Produit</th>
+     <th>Description</th>
+     <th>client</th>
+     <th>Etat</th>
+     <th>Prix totale</th>
+    <th colspan="2">Actions</th>
+    
+    
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in commandes %}{%for s in c.products%}
+    <tr>
+    <td>{{c.id}}</td>
+    <td>{{s.name}}</td>
+    <td>{{c.description}}</td>
+
+    <td>{{c.client.name}}</td>
+    <td>{{c.etat}}</td>
+    <td>{{s.price}}DT</td>
+    <td> <a href="{{path('delete_commande',{'id':c.id})}}"> Delete </a> </td>
+    <td> <a href="{{path('app_commande_id',{'id':c.id})}}">Detail</a> </td>
+    <td><a href="{{path('commande_update',{'id':c.id})}}">modifier</a></td>
+
+
+    </tr>
+    {% endfor %}
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
