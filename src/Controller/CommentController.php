@@ -64,4 +64,18 @@ class CommentController extends AbstractController
     
     
     }
+    
+    #[Route('/updateComment/{id}', name: 'Comment_update')]
+    public function updateComment(ManagerRegistry $doctrine,$id,Request $req,CommentRepository $commentRepository):Response{
+        $em = $doctrine->getManager();
+        $comment = $commentRepository->find($id);
+        $form = $this->createForm(CommentType::class,$comment);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()){
+            $comment->setDate(new DateTime());
+
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('list_comment');}
+    return $this->renderForm('comment/add.html.twig',['form'=>$form]);}
 }
